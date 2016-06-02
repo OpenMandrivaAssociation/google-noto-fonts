@@ -45,7 +45,7 @@ heights and stroke thicknesses) across languages.
 
 %package doc
 Summary:        Noto Font Families License
-Group:          System/Fonts/True Type
+Group:          System/Fonts/True type
 
 %description doc
 License for Google's Noto fonts.
