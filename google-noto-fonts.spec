@@ -40,8 +40,8 @@ BuildRequires:  unzip
 BuildArch:      noarch
 
 %description
-Noto's design goal is to achieve visual harmonization (e.g., compatible heights and stroke 
-thicknesses) across languages. 
+Noto's design goal is to achieve visual harmonization (e.g., compatible
+heights and stroke thicknesses) across languages. 
 
 %package doc
 Summary:        Noto Font Families License
