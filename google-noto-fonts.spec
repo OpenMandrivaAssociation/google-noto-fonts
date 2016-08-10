@@ -26,13 +26,12 @@
 
 Name:           google-noto-fonts
 Version:        %{hyear}%{hmonth}%{hday}
-Release:        1
+Release:        2
 Summary:        Noto Font Families
 License:        OFL-1.1
 Group:          System/Fonts/True type
 Url:            https://github.com/googlei18n/noto-fonts
 Source0:        https://noto-website-2.storage.googleapis.com/pkgs/Noto-hinted.zip
-Source1:        https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJK.ttc.zip
 Source2:        generate-specfile.sh
 Source3:        59-noto-sans-cjk.conf
 BuildRequires:  fontpackages-devel
@@ -262,6 +261,17 @@ Provides:       scalable-font-ko
 Provides:       locale(zh_CN;zh_SG;zh_TW;zh_HK;zh_MO)
 
 %description -n noto-sans-cjk-fonts
+Noto's design goal is to achieve visual harmonization (e.g., compatible
+heights and stroke thicknesses) across languages. This package contains
+CJK Sans Serif font, hinted.
+
+%package -n noto-sans-cjk-fonts-extra
+Summary:        Noto CJK Sans Serif Font
+Group:          System/Fonts/True type
+Requires:       google-noto-fonts-doc
+Conflicts:	noto-sans-cjk-fonts < 20151215-2
+
+%description -n noto-sans-cjk-fonts-extra
 Noto's design goal is to achieve visual harmonization (e.g., compatible
 heights and stroke thicknesses) across languages. This package contains
 CJK Sans Serif font, hinted.
@@ -1267,16 +1277,12 @@ Thai Sans Serif font, hinted.
 %prep
 %setup -q -c -n %{name}-%{version}
 rm -f *Draft.*tf
-# use otc file for CJK
-rm -f NotoSans*CJK*.otf
-unzip -o %{S:1}
 
 %build
 
 %install
 install -m 0755 -d %{buildroot}%{_ttfontsdir}
-install -m 0644 -p *.ttf %{buildroot}%{_ttfontsdir}
-install -m 0644 -p *.ttc %{buildroot}%{_ttfontsdir}
+install -m 0644 -p *.?tf %{buildroot}%{_ttfontsdir}
 
 install -m 0755 -d %{buildroot}%{_fontconfig_templatedir} \
                    %{buildroot}%{_fontconfig_confdir}
@@ -1355,9 +1361,18 @@ ln -s %{_fontconfig_templatedir}/59-noto-sans-cjk-fontconfig.conf \
 
 %files -n noto-sans-cjk-fonts
 %dir %{_ttfontsdir}
-%{_ttfontsdir}/NotoSansCJK*.ttc
+%{_ttfontsdir}/NotoSansCJK*Bold.otf
+%{_ttfontsdir}/NotoSansCJK*Regular.otf
 %{_fontconfig_templatedir}/59*.conf
 %config(noreplace) %{_fontconfig_confdir}/59*.conf
+
+%files -n noto-sans-cjk-fonts-extra
+%dir %{_ttfontsdir}
+%{_ttfontsdir}/NotoSansCJK*Black.otf
+%{_ttfontsdir}/NotoSansCJK*Thin.otf
+%{_ttfontsdir}/NotoSansCJK*Light.otf
+%{_ttfontsdir}/NotoSansCJK*Medium.otf
+%{_ttfontsdir}/NotoSansMonoCJK*.otf
 
 %files -n noto-sans-canadianaboriginal-fonts
 %dir %{_ttfontsdir}
