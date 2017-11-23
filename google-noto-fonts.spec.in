@@ -15,9 +15,9 @@
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
 
-%define hyear     2015
-%define hmonth    12
-%define hday      15
+%define hyear     2017
+%define hmonth    10
+%define hday      24
 %define src_name  NotoFonts
 
 %define _ttfontsdir %{_datadir}/fonts/TTF/
@@ -54,16 +54,13 @@ License for Google's Noto fonts.
 
 %prep
 %setup -q -c -n %{name}-%{version}
-rm -f *Draft.*tf
-# use otc file for CJK
-rm -f NotoSans*CJK*.otf
 unzip -o %{S:1}
 
 %build
 
 %install
 install -m 0755 -d %{buildroot}%{_ttfontsdir}
-install -m 0644 -p *.ttf %{buildroot}%{_ttfontsdir}
+install -m 0644 -p *.?tf %{buildroot}%{_ttfontsdir}
 install -m 0644 -p *.ttc %{buildroot}%{_ttfontsdir}
 
 install -m 0755 -d %{buildroot}%{_fontconfig_templatedir} \
