@@ -26,7 +26,7 @@
 
 Name: google-noto-fonts
 Version: %{hyear}%{hmonth}%{hday}
-Release: 2
+Release: 3
 Summary: Noto Font Families
 License: OFL-1.1
 Group: System/Fonts/True type
